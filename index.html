@@ -64,38 +64,81 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-my-first-blog" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-函数输入参数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/10/24/my-first-blog/" class="article-date">
-  <time datetime="2020-10-24T13:59:39.000Z" itemprop="datePublished">2020-10-24</time>
+    <a href="/2020/10/25/%E5%87%BD%E6%95%B0%E8%BE%93%E5%85%A5%E5%8F%82%E6%95%B0/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.282Z" itemprop="datePublished">2020-10-25</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/24/my-first-blog/">my first blog</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="first"><a href="#first" class="headerlink" title="first"></a>first</h3><p>I  use hexo to bulid my blog!</p>
-<h3 id="second"><a href="#second" class="headerlink" title="second"></a>second</h3><p>I think it is a little trouble!</p>
-<h3 id="third"><a href="#third" class="headerlink" title="third"></a>third</h3><p>worker is very tired!</p>
-<h4 id="finally"><a href="#finally" class="headerlink" title="finally"></a>finally</h4><p>I want to a good job!  </p>
-<p>this school is so bad to us!</p>
+        <p>承上启下的功能</p>
+<p>调用者：</p>
+<p>​    函数名（要传递的数据）// 这个数据就叫做实参</p>
+<p>被调者：</p>
+<p>​    函数的具体实现</p>
+<p>​    函数的返回值，函数名（接收的数据）//接收的数据就叫做形参</p>
+<p>{</p>
+<p>​    xxx  xxx;</p>
+<p>}</p>
+<p>​    实参 传递给形参</p>
+<p>​    传递的形式：拷贝</p>
+<h5 id="函数值传递"><a href="#函数值传递" class="headerlink" title="函数值传递"></a>函数值传递</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    c=a;</span><br><span class="line">    a=b;</span><br><span class="line">    b=c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">20</span>;</span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">30</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the a is %d,the b is %d\n&quot;</span>,a,b);</span><br><span class="line">    swap(a,b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;after swap,the a is %d,the b is %d\n&quot;</span>,a,b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>上述代码执行后，a和b的值不会发生交换，因为swap函数周期已经结束了，这个块函数内存可以理解为不合法无效了消失了，第二个printf函数输出的a和b的值还是20和30</strong></p>
+<p>值传递特点：</p>
+<p>上层调用者保护自己空间值不被改变的能力</p>
+<h5 id="函数地址传递"><a href="#函数地址传递" class="headerlink" title="函数地址传递"></a>函数地址传递</h5><p>上层调用者 让下层子函数修改自己空间值的方式</p>
+<p>类似结构体这样的空间，函数与函数之间调用关系最好用地址传递</p>
+<p>上述代码，若想实现a和b的值交换，需要进行地址的操作，如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    c=*a;</span><br><span class="line">    *a=*b;</span><br><span class="line">   *b=c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">20</span>;</span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">30</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the a is %d,the b is %d\n&quot;</span>,a,b);</span><br><span class="line">    swap(&amp;a,&amp;b);<span class="comment">//取地址操作</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;after swap,the a is %d,the b is %d\n&quot;</span>,a,b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上代码执行后 a和b的值就能进行交换</p>
+<h6 id="空间的读写"><a href="#空间的读写" class="headerlink" title="空间的读写"></a>空间的读写</h6><p>void  </p>
+<h6 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h6><p>1、修改  int *char </p>
+<p>2、空间传递</p>
+<p>​    2.1子函数看看空间的情况   const </p>
+<p>​    2.2子函数反向修改上层空间的内容</p>
+<p>void fun(const int  *p);</p>
+<p>void fun(const char *p);</p>
+<p>p[1000]  p[100] p[[10000]]</p>
+<p>空间：空间首地址、结束标志的不同</p>
+<p>结束标志：内存里面存放了0x00（1B），字符空间</p>
+<p>非字符空间0x00，不能当做结束标志</p>
+<h5 id="连续空间的传递"><a href="#连续空间的传递" class="headerlink" title="连续空间的传递"></a>连续空间的传递</h5><h6 id="1-数组"><a href="#1-数组" class="headerlink" title="1.数组"></a>1.数组</h6><p>数组名–标签</p>
+<p>实参：int abc[10]        fun(abc)//这里的abc是数组的标签，也就是数组的地址</p>
+<p>形参：void fun(int <em>p)  //  只 要 * *</em>P**中的值和abc一样 就可以传递了</p>
+<h6 id="2-结构体"><a href="#2-结构体" class="headerlink" title="2.结构体"></a>2.结构体</h6><p>结构体变量</p>
+<p>struct abc {int a, int b, int c;};</p>
+<p>struct abc buf;</p>
+<p>实参： fun(buf);    fun(&amp;buf)</p>
+<p>形参：void fun(struct abc a1)    void fun(struct abc *a1);</p>
+<h5 id="连续空间的传递-1"><a href="#连续空间的传递-1" class="headerlink" title="连续空间的传递"></a>连续空间的传递</h5><h6 id="1-字符空间"><a href="#1-字符空间" class="headerlink" title="1.字符空间"></a>1.字符空间</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">char</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    p[<span class="number">1000</span>]=<span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">    <span class="keyword">char</span> buf;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">char</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(p[i]==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="comment">//在这里进行p[i]的操作的最小模板</span></span><br><span class="line">            i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>strlen</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">strlen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/*错误处理--判断输入参数是否合法*/</span></span><br><span class="line">    <span class="keyword">if</span>(p== <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="comment">//return...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="comment">/*内存处理，从头到尾逐一处理，也叫遍历*/</span></span><br><span class="line">    <span class="keyword">while</span>(p[i])&#123;</span><br><span class="line">        <span class="comment">//在这里实现具体的代码</span></span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>strcpy</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">strcpy</span><span class="params">(<span class="keyword">char</span> *dest,<span class="keyword">char</span> *src)</span></span>;</span><br><span class="line"><span class="string">&quot;&quot;</span>-----&gt;初始化<span class="keyword">const</span> <span class="keyword">char</span> *</span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">10</span>]--&gt;初始化<span class="keyword">char</span> *</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-非字符空间"><a href="#2-非字符空间" class="headerlink" title="2.非字符空间"></a>2.非字符空间</h6><p>unsigned char *p;   结束标志：数量</p>
+<p>int *p; </p>
+<p>short *p;  struct abc *p;  这些都是非字符空间，最小单位还是char 一个字节</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>memcpy</strong> </p>
+<p>*<em>void * *</em></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">void</span> *buf,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> *tmp =(<span class="keyword">unsigned</span> <span class="keyword">char</span> *)buf;<span class="comment">//强制类型转换</span></span><br><span class="line">    tmp[i];<span class="comment">//这样就可以操作空类型的指针了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/24/my-first-blog/" data-id="ckgnr68rv00015gv97ac7bnq7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/25/%E5%87%BD%E6%95%B0%E8%BE%93%E5%85%A5%E5%8F%82%E6%95%B0/" data-id="ckgoj9ala0006l4v9242paxtq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -105,46 +148,477 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-函数返回值" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/10/24/hello-world/" class="article-date">
-  <time datetime="2020-10-24T13:53:06.818Z" itemprop="datePublished">2020-10-24</time>
+    <a href="/2020/10/25/%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.272Z" itemprop="datePublished">2020-10-25</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/24/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <p>提供启下功能的一种表现形式</p>
+<h5 id="1-基本语法"><a href="#1-基本语法" class="headerlink" title="1.基本语法"></a>1.基本语法</h5><p>返回类型  函数名称（输入列表）</p>
+<p>{</p>
+<p>​    return;</p>
+<p>}</p>
+<p>调用者：</p>
+<p>​    a=fun();</p>
+<p>被调者：</p>
+<p>​    int fun()</p>
+<p>{</p>
+<p>​    return num;</p>
+<p>}</p>
+<p>拷贝</p>
+<p>返回类型</p>
+<p>​    基本数据类型</p>
+<p>​    指针类型（空间）</p>
+<p>​    不能返回数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a =<span class="number">0x199</span>;</span><br><span class="line">    <span class="keyword">int</span> *p =&amp;a;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret;</span><br><span class="line">    ret=fun();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the ret is %x\n&quot;</span>,ret);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>上述代码运行后，能直接返回打印出a的地址，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a =<span class="number">0x199</span>;</span><br><span class="line">    <span class="keyword">int</span> *p =&amp;a;</span><br><span class="line">    <span class="keyword">int</span> buf[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">return</span> buf;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret;</span><br><span class="line">    ret=fun();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the ret is %x\n&quot;</span>,ret);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>上述代码运行后，ret的值为0，也就是数组buf的首地址</p>
+<h5 id="2-返回基本数据类型"><a href="#2-返回基本数据类型" class="headerlink" title="2.返回基本数据类型"></a>2.返回基本数据类型</h5><p>int fun(void)</p>
+<p>{</p>
+<p>​    return ;</p>
+<p>}</p>
+<p>建议不返回结构体</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun1</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">a=fun1();</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>上述代码，a调用和了fun1函数，a的值就不等于0了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">(<span class="keyword">int</span> *p)</span></span>;</span><br><span class="line"><span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">fun2(&amp;a);</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>上述代码是取a的地址 </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">fun1</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function">    <span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p;</span><br><span class="line">    p=fun1();<span class="comment">//函数调用了之后，p指向了一个东西</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun2</span><span class="params">(<span class="keyword">int</span> **p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p;</span><br><span class="line">    fun2(p);<span class="comment">//这里没有取地址，只传了p的值，p本身是没有改变的</span></span><br><span class="line">    fun2(&amp;p);<span class="comment">//这里取了地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-返回连续空间类型"><a href="#3-返回连续空间类型" class="headerlink" title="3.返回连续空间类型"></a>3.返回连续空间类型</h5><p>指针作为空间返回的唯一数据类型</p>
+<p>int  *fun();</p>
+<p>地址：指向的合法性</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> buf[]=<span class="string">&quot;hello world!&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> buf;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *p;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>作为函数的设计者，必须保证函数返回的地址所指的空间是合法的，不是局部变量</p>
+<p>使用者：若函数返回的是地址，是个空间，那么调用也就申请一个空间</p>
+<p>int *fun();</p>
+<p>int *p=fun();</p>
+<h6 id="函数内部实现"><a href="#函数内部实现" class="headerlink" title="函数内部实现"></a>函数内部实现</h6><p><strong>基本数据类型</strong></p>
+<p>基本数据类型 fun (void)<br>{</p>
+<p>​    基本数据类型 ret；</p>
+<p>​    ret=xxxxxx;</p>
+<p>​    return ret;//返回ret的值</p>
+<p>}</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret =<span class="number">0</span>;</span><br><span class="line">    count++;</span><br><span class="line">    ret=xxx;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>返回地址空间</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *s = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">    <span class="comment">/*char buf[];</span></span><br><span class="line"><span class="comment">    return buf*/</span>  <span class="comment">//如果返回值是一个局部变量，则不行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="1-静态区–static"><a href="#1-静态区–static" class="headerlink" title="1.静态区–static"></a>1.静态区–static</h6><h6 id="2-只读区"><a href="#2-只读区" class="headerlink" title="2.只读区"></a>2.只读区</h6><h6 id="3-堆区–malloc"><a href="#3-堆区–malloc" class="headerlink" title="3.堆区–malloc"></a>3.堆区–malloc</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//static char buf[]=&quot;hello world!&quot;;</span></span><br><span class="line">    <span class="keyword">char</span> *s = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">100</span>);</span><br><span class="line">    <span class="built_in">strcpy</span>(s,<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *p;</span><br><span class="line">    p=fun();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the p is %s\n&quot;</span>,p);</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>malloc函数在申请了一个内存空间后， 一定要加一个free函数来释放内存，在有存在警告的时候 ，没有包含头文件，在linux环境中可以执行man malloc查看所缺少的头文件</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/24/hello-world/" data-id="ckgnr68rp00005gv9c0wx9w3h" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/25/%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC/" data-id="ckgoj9al90005l4v9gpu0eppz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-多级指针" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/%E5%A4%9A%E7%BA%A7%E6%8C%87%E9%92%88/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.270Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>int  **p;</p>
+<p>存放地址的地址空间</p>
+<p>char  **p;</p>
+<p>p[0]     p[1] ….   p[n]</p>
+<p>p[m] == NULL—-&gt;结束了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;argc;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;the argv[%d] is %s \n&quot;</span>,i,argv[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/%E5%A4%9A%E7%BA%A7%E6%8C%87%E9%92%88/" data-id="ckgoj9alc0008l4v9bffq0iys" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-动态内存申请" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%94%B3%E8%AF%B7/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.266Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%94%B3%E8%AF%B7/" data-id="ckgoj9alb0007l4v9fns36p17" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C语言函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/C%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.234Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="函数概述"><a href="#函数概述" class="headerlink" title="函数概述"></a>函数概述</h5><p>一堆代码的集合，用一个标签去描述它</p>
+<p>复用化</p>
+<p>标签—-函数名</p>
+<p>函数_数组，函数具备3要素：</p>
+<p>1、函数名  （就是个地址）</p>
+<p>2、输入参数</p>
+<p>3、返回值</p>
+<p>在定义函数时，必须将3要素告知编译器</p>
+<p>int  fun(int a, char b)</p>
+<p>{xxx具体函数体}</p>
+<p>如何用指针保存函数？以上面的fun函数为例子</p>
+<p>char *p;  //声明指针</p>
+<p>int  (*p)(int a,char b);</p>
+<p>定义函数和调用函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">char</span> b)</span><span class="comment">//声明函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    xxx</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    fun(<span class="number">0</span>,<span class="number">1</span>);<span class="comment">//调用函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="函数名举例"><a href="#函数名举例" class="headerlink" title="函数名举例"></a>函数名举例</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> (*myshow1)(<span class="keyword">const</span> <span class="keyword">char</span> *,...);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello World!\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    myshow1 = <span class="built_in">printf</span>;</span><br><span class="line">    myshow1(<span class="string">&quot;VV\n&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    myshow2 = (<span class="keyword">int</span> (*)(<span class="keyword">const</span> <span class="keyword">char</span> *,...))<span class="number">0x8048320</span></span><br><span class="line">    myshow2(<span class="string">&quot;==============&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上述代码执行后，能打印出hello world 以及VV，因为myshow1里面保存了printf的地址，相当于能调用该函数</p>
+<p>第三个myshow是直接通过强制类型转换，将printf的函数地址值转换成某个标签再赋值给myshow2，后调用myshow2依然可以直接打印出来</p>
+<p>最终思想，函数名就是个地址 我们可以用很多方法调用，什么回调之类的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/C%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0/" data-id="ckgoj9akl0000l4v93km90zzf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-c和c++中const的异同" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/c%E5%92%8Cc++%E4%B8%ADconst%E7%9A%84%E5%BC%82%E5%90%8C/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.210Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h5><p>c和c++中const修饰的全局变量都是存放在常量区，不能被修改</p>
+<h5 id="不同的电："><a href="#不同的电：" class="headerlink" title="不同的电："></a>不同的电：</h5><h6 id="一："><a href="#一：" class="headerlink" title="一："></a>一：</h6><p>c语言汇总const修饰的局部变量赋值为常量时，变量保存在栈区，可以通过指针来修改</p>
+<p>c++中，const修饰的局部变量为常量时，局部变量保存在符号列表中，不能被修改</p>
+<h6 id="二："><a href="#二：" class="headerlink" title="二："></a>二：</h6><p>C语言中const修饰的全局变量默认是外部链接属性</p>
+<p>c++语言中const修饰的全局变量默认是内部链接属性</p>
+<h6 id="C-中const修饰的变量，分配内存情况"><a href="#C-中const修饰的变量，分配内存情况" class="headerlink" title="C++中const修饰的变量，分配内存情况"></a>C++中const修饰的变量，分配内存情况</h6><p>/const修饰的局部变量没有分配内存，保存在符号表中</p>
+<p>//对const修饰的局部变量为常量的变量取地址，会分配一个临时的空间 int temp=a  *p=&amp;temp</p>
+<p>//const修饰的局部变量赋值变量时，局部变量存放在栈区，可以通过指针改变值</p>
+<p>​    //const修饰的变量为自定义变量时，也是保存在栈区，可以通过指针修改</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> a = <span class="number">1</span>;<span class="comment">//const修饰的全局变量在常量区分配了内存</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> b = <span class="number">10</span>;<span class="comment">//const修饰的局部变量没有分配内存，保存在符号表中</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> *p = (<span class="keyword">int</span> *)&amp;a;<span class="comment">//对const修饰的局部变量为常量的变量取地址，会分配一个临时的空间 int temp=a  *p=&amp;temp</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line">	<span class="comment">//const修饰的局部变量赋值赋值变量 </span></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> a = b;</span><br><span class="line">	<span class="comment">//const修饰的局部变量赋值变量时，局部变量存放在栈区，可以通过指针改变值</span></span><br><span class="line">	<span class="keyword">int</span> *p = (<span class="keyword">int</span> *)&amp;a;</span><br><span class="line">	*p = <span class="number">1123</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; a&lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stu</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	<span class="keyword">int</span> b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//const修饰的变量为自定义变量时，也是保存在栈区，可以通过指针修改</span></span><br><span class="line">	<span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">stu</span> <span class="title">obj</span> =</span> &#123; <span class="number">1</span>,<span class="number">2</span> &#125;;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">stu</span> *<span class="title">p</span> =</span> (struct stu *)&amp;obj;</span><br><span class="line">	p-&gt;a = <span class="number">3</span>;</span><br><span class="line">	p-&gt;b = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; obj.a &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; obj.b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	test03();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/c%E5%92%8Cc++%E4%B8%ADconst%E7%9A%84%E5%BC%82%E5%90%8C/" data-id="ckgoj9al60002l4v91dpn0294" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/%E6%95%B0%E7%BB%84/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.193Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="一、数组的定义"><a href="#一、数组的定义" class="headerlink" title="一、数组的定义"></a>一、数组的定义</h5><p>定义一个空间：</p>
+<p>1、大小</p>
+<p>2、读取方式</p>
+<p>定义方式：数据类型  数组名[m] </p>
+<p>其中m代表的是大小  m的作用域是在申请的时候起作用</p>
+<p>数组名是一个常量符号，一定不要放到= 左边</p>
+<p>int a[100];</p>
+<p>越界问题： 访问数组的时候考虑越界问题</p>
+<p>a[10]</p>
+<p>int code[5];  定义了一个名称为code的整型数组，该组含有5个整型变量，5个整型变量的下标一次是 code[0],code[1],code[2],code[3],code[4]，数组的下标一定是从0开始的，也不可能是负数</p>
+<p>![image-20200718102702731](C:\Users\XX\Desktop\smart home\markdown笔记\typora的图片备份\image-20200718102702731.png)</p>
+<p>数组在内存中的存储形式如下图所示：</p>
+<p>![image-20200718102835623](C:\Users\XX\Desktop\smart home\markdown笔记\typora的图片备份\image-20200718102835623.png)</p>
+<h5 id="二、数组的初始化"><a href="#二、数组的初始化" class="headerlink" title="二、数组的初始化"></a>二、数组的初始化</h5><p>一、在定义的时候进行初始化： ①int code[5]={5,3,1,4,2}//定义整型数组，同时初始化数组的5个元素</p>
+<p>②int code[10]={1,2,3,4,5}//该数组公有10个元素，仅对前面5个进行初始化，后面5个元素编译器自动初始化为0</p>
+<p>③int code[5]={0,0,0,0,0}或者int code[5]={0}//所有元素初始化为0</p>
+<p> int a[10]=空间;</p>
+<p>C语言本身，CPU内部一般不支持空间和空间的拷贝</p>
+<p>==========================================</p>
+<p>数组空间的初始化 和 变量的初始化 本质不同 ，尤其在嵌入式的裸机开发中，空间的初始化往往需要库函数的辅助</p>
+<h6 id="1-char类型的初始化"><a href="#1-char类型的初始化" class="headerlink" title="1.char类型的初始化"></a>1.char类型的初始化</h6><p>1、char buf[10]={‘a’,’b’,’c’};</p>
+<p>buf当成普通内存来看，没有问题</p>
+<p>buf当成一个字符来看，最后加上一个’\0’ </p>
+<p>​    字符串的重要属性，结尾一定有一个‘\0’</p>
+<p>2、char buf[10]={“abc”};</p>
+<p>char buf[10]=”abc”;</p>
+<p>char *p=”abc”;</p>
+<p>char buf[]=”abcd”;  //5 </p>
+<p>char buf[10]=”abc”;</p>
+<p>buf=”hello world”</p>
+<p>​    第二次内存初始化，赋值？</p>
+<p>​    逐一处理 </p>
+<p>​    buf[0]=’h’   buf[1]=’e’……buf[n]=’d’   buf[n+1]=0  注意最后有一个0</p>
+<h6 id="2-strcpy-strncpy"><a href="#2-strcpy-strncpy" class="headerlink" title="2.strcpy,strncpy"></a>2.strcpy,strncpy</h6><p>一块空间，当成字符空间，提供一套字符拷贝函数</p>
+<p>字符拷贝函数的原则：</p>
+<p>​    内存空间和内存空间的逐一赋值的功能的一个封装体</p>
+<p>​    一旦空间出现了0这个特殊值，函数就即将结束。</p>
+<p>strcpy();   //严重的内存泄漏函数，工程中基本不使用</p>
+<p>char buf[10]=”abc”;</p>
+<p>buf=”hello world”;</p>
+<p>strcpy(buf,”hello world”);</p>
+<h6 id="3-非字符串空间"><a href="#3-非字符串空间" class="headerlink" title="3.非字符串空间"></a>3.非字符串空间</h6><p>字符空间</p>
+<p>​    ASCII码编码来解码的空间，–&gt;给人看的</p>
+<p>​    %s        abc   ‘a’’b’’c’</p>
+<p>​    \0作为结束标志</p>
+<p>非字符空间</p>
+<p>​    数据采集  0x00-0xff    8bit    </p>
+<p>​    开辟一个存储这些数据的盒子</p>
+<p>所以咱们是用char buf[10]；—–&gt;string</p>
+<p>还是用unsigned char buf[10];——&gt;data</p>
+<p>buf =”abc”;</p>
+<p>unsigned char *p=sensor_base;</p>
+<p>strcpy(buf,p);</p>
+<p>只管逐一拷贝，结束在哪里？只能定义个数</p>
+<p>非字符空间的拷贝三要素：</p>
+<p>1、src</p>
+<p>2、dest</p>
+<p>3、个数</p>
+<h6 id="4-memcpy-内存拷贝"><a href="#4-memcpy-内存拷贝" class="headerlink" title="4.memcpy 内存拷贝"></a>4.memcpy 内存拷贝</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> buf[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> sensor_buf[<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">memcpy</span>(buf,sensor_buf,<span class="number">10</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));<span class="comment">//当传递的参数类型不是char时，传递的参数个数，一定要用数量乘以传递的参数的类型</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> buf1[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> sensor_buf[<span class="number">100</span>];<span class="comment">//00 00 00 23 45 78 </span></span><br><span class="line"><span class="built_in">strncpy</span>(buf,sensor_buf,<span class="number">10</span>);<span class="comment">//如果是以上的数据的话，看见第一个数据为00，数据的拷贝就直接结束了</span></span><br><span class="line"><span class="built_in">memcpy</span>(buf,sensor_buf,<span class="keyword">sizeof</span>(<span class="keyword">unsigned</span> <span class="keyword">char</span>));</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/%E6%95%B0%E7%BB%84/" data-id="ckgoj9alk000dl4v9d7p8ftxi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-嵌入式工程师必备0x10题目" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%BF%85%E5%A4%870x10%E9%A2%98%E7%9B%AE/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.186Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="C语言面试题目"><a href="#C语言面试题目" class="headerlink" title="C语言面试题目"></a>C语言面试题目</h5><h6 id="宏定义"><a href="#宏定义" class="headerlink" title="宏定义"></a>宏定义</h6><p><strong>1.用预处理指令#define声明一个常数，用以表明1年有多少秒？（忽略闰年）</strong></p>
+<p>#define 宏名  宏体</p>
+<p>宏名 ： 一般来说都用大写字母表示</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SECOND_OF_YEAR	123456</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SECOND_OF_YEAR	（365*24*3600）UL</span></span><br></pre></td></tr></table></figure>
+
+<p>上述两个表达式中，第一个直接是人为计算出了结果然后再赋值给以后需要的操作，第二个是直接写出表达式，让CPU进行计算，因为在C语言中，这个表达式是一个表达式常量，宏定义了之后，这个SECOND_OF_YEAR的值就是固定的了，所以虽然两个都对，但是第二个表达式更优。如果是个表达式，一定要加个括号来保护宏体。</p>
+<p>因为默认是int ，是4个字节，为了保证定义的数是4个字节，就要在后面加个L，因为是秒数，所以一定不是负数，所以要加UL，确定可以进行移植到其他的开发板。</p>
+<h6 id="数据声明"><a href="#数据声明" class="headerlink" title="数据声明"></a>数据声明</h6><p>用变量a给出下面的定义</p>
+<p>​    <strong>a)一个整形数（an interger）</strong></p>
+<p>​    int a;</p>
+<p>​    <strong>b)一个指向整型数的指针（a pointer to an interger）</strong></p>
+<p>​    int *a;</p>
+<p>​    <strong>c)一个指向指针的指针，它指向的指针指向一个整型数（a pointer a pointer to an interger）</strong></p>
+<p>​    int  * *a;</p>
+<p>​    <strong>d)一个有10个整型数的数组（a array of 10 interger）</strong></p>
+<p>​     int a[10];</p>
+<p>​    <strong>e)一个有10个指针的数组，该指针是指向一个整型数的（an array of 10 pointer to interger）</strong></p>
+<p>​    int* a[10];</p>
+<p>​    <strong>f)一个指向有10个整型数组的指针（a pointer to an array 10 interger )</strong></p>
+<p>​    int  (*a)[10]</p>
+<p>​    <strong>g)一个指向函数的指针，该函数有一个整型参数并返回一个整形数（a pointer to a function that takes an interger as an argument and returns an interger）</strong></p>
+<p>​    int (*a)(int)</p>
+<p><strong>h)一个有10个指针的数组，该数组指向一个函数，该函数有一个整型参数并返回一个整形数 (an array of ten pointers to functions that take an interger argument and returns an interger)</strong></p>
+<p>​     int (*a[10])(int)</p>
+<h6 id="修饰符的使用总结"><a href="#修饰符的使用总结" class="headerlink" title="修饰符的使用总结"></a>修饰符的使用总结</h6><p>​    <strong>关键字static的作用是什么？</strong></p>
+<p><strong>1、修饰局部变量</strong></p>
+<p>​    默认局部变量在<strong>栈空间</strong>存在，生存期较短，加上static后叫做局部静态化，局部变量，在静态数据段保存，生存期非常长</p>
+<p><strong>2、修饰全局变量</strong></p>
+<p>​    防止重命名，限制变量名只在本文件内起作用</p>
+<p><strong>3、修饰全局函数</strong></p>
+<p>防止重命名</p>
+<p>​    <strong>关键字const有什么含义？</strong></p>
+<p>在C语言中const：只读，建议性，不具备强制性，不等于常量</p>
+<p>C++中，常量</p>
+<p>​    <strong>关键字volatile有什么含义？并给出三个不同的例子。</strong>    </p>
+<p>防止C语言编译器的优化，它修饰的变量，该变量的修改，可能通过第三方来修改</p>
+<h6 id="位操作"><a href="#位操作" class="headerlink" title="位操作"></a>位操作</h6><p>​    <strong>嵌入式系统总是要用户对变量活寄存器进行位操作。给定一个整型变量a，写两段代码，第一个设置a的bit 3，第二个清除a的bit 3,。在以上两个操作中，要保持其他位不变。</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> a;</span><br><span class="line">a |=(<span class="number">0x1</span>&lt;&lt;<span class="number">3</span>);<span class="comment">//设置</span></span><br><span class="line"></span><br><span class="line">a &amp;= ~(<span class="number">0x1</span>&lt;&lt;<span class="number">3</span>)<span class="comment">//清除</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="访问固定内存位置"><a href="#访问固定内存位置" class="headerlink" title="访问固定内存位置"></a>访问固定内存位置</h6><p>​    <strong>在某工程中，要求设置一绝对地址为0x67a9的整型变量的值为0xaa66.编译器是一个纯粹的ANSII编译器。写代码去完成这一任务。</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p=(<span class="keyword">int</span> *)<span class="number">0x67a9</span>;</span><br><span class="line">p[<span class="number">0</span>]=<span class="number">0xaa66</span>;</span><br></pre></td></tr></table></figure>
+
+<p>或者把地址当成一个数来处理</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)<span class="number">0x67a9</span>)=<span class="number">0xaa66</span>;<span class="comment">//直接取这个绝对地址</span></span><br></pre></td></tr></table></figure>
+
+<p>或者把地址当成一个函数来处理</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((<span class="keyword">void</span> (*)(<span class="keyword">void</span>))<span class="number">0x67a9</span>)();<span class="comment">//前面一堆当做函数指针直接像调用函数一样的调用</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%BF%85%E5%A4%870x10%E9%A2%98%E7%9B%AE/" data-id="ckgoj9ald0009l4v9acge8nxa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-内存分布图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83%E5%9B%BE/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.182Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>内存的属性：</p>
+<p>1、大小</p>
+<p>2、在哪里</p>
+<p>int a;  默认方式</p>
+<p>编译—-》汇编——》链接</p>
+<p>​    内核空间        应用程序不允许访问</p>
+<hr>
+<p>​    栈空间      就是局部变量的运行空间   RW  可读可写</p>
+<hr>
+<p>​    运行时的堆空间        malloc</p>
+<hr>
+<p>​    全局的数据空间—-&gt;(初始化的，未初始化)   static  RW  data bss</p>
+<p>​    只读数据段        “hello world”——字符串常量  只能读 不但能写</p>
+<p>​    代码段            code    R    </p>
+<hr>
+<p>​    0x0—-低地址</p>
+<h5 id="只读空间"><a href="#只读空间" class="headerlink" title="只读空间"></a>只读空间</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> b;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">int</span> a=<span class="number">100</span>;</span><br><span class="line">    <span class="keyword">return</span> a++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> *p;</span><br><span class="line">    a=<span class="number">0x10</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the a is %p\n&quot;</span>,&amp;a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the is %p\n&quot;</span>,main);</span><br><span class="line">    </span><br><span class="line">    p=(<span class="keyword">unsigned</span> <span class="keyword">char</span> *)main;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the p[0] is %x\n&quot;</span>,p[<span class="number">0</span>]);</span><br><span class="line">    p[<span class="number">0</span>]=<span class="number">0x12</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the p[0] is %x\n&quot;</span>,p[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码运行后：</p>
+<p>the a is 0x804a024</p>
+<p>the is 0x80483fa</p>
+<p>the p[0] is 55</p>
+<p>Segmentation fault //发生了段错误</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/%E5%86%85%E5%AD%98%E5%88%86%E5%B8%83%E5%9B%BE/" data-id="ckgoj9al80004l4v9efff9mih" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-结构体" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/%E7%BB%93%E6%9E%84%E4%BD%93/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.077Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="字节对齐"><a href="#字节对齐" class="headerlink" title="字节对齐"></a>字节对齐</h5><p>char a;  int b;   char一个字节,int 4个字节， 加起来就有5个字节</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">abc</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">abc</span> <span class="title">buf</span>;</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the buf is %lu\n&quot;</span>,<span class="keyword">sizeof</span>(buf));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但是那个一个程序，运行起来，buf却显示分配了8个字节</p>
+<p>原因：由于效率的不同，希望牺牲一点空间换取时间的效率，char类型先占用4个字节的空间，拿一个字节空间存放内容，剩下3个字节空间放空，接下来的4个字节空间用来存放int的内容，从而保证CPU的执行效率</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">abc</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="keyword">short</span> e;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">my</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="keyword">short</span> e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">abc</span> <span class="title">buf</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">my</span> <span class="title">buf1</span>;</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the buf is %lu:%lu\n&quot;</span>,<span class="keyword">sizeof</span>(buf),<span class="keyword">sizeof</span>(buf1));</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>以上代码块执行结果为 the buf is 8:12</p>
+<p>两个结构体，由于打包的顺序不同，导致结构体的大小不同，最终结构体的大小一定是4的倍数，结构体里面的成员变量顺序不一致也会影响到结构体的大小</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/%E7%BB%93%E6%9E%84%E4%BD%93/" data-id="ckgoj9all000el4v94jwshlc8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -155,6 +629,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -185,11 +664,23 @@
       <ul>
         
           <li>
-            <a href="/2020/10/24/my-first-blog/">my first blog</a>
+            <a href="/2020/10/25/%E5%87%BD%E6%95%B0%E8%BE%93%E5%85%A5%E5%8F%82%E6%95%B0/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2020/10/24/hello-world/">Hello World</a>
+            <a href="/2020/10/25/%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E5%A4%9A%E7%BA%A7%E6%8C%87%E9%92%88/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%94%B3%E8%AF%B7/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/C%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0/">(no title)</a>
           </li>
         
       </ul>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、数组的定义定义一个空间： 1、大小 2、读取方式 定义方式：数据类型  数组名[m]  其中m代表的是大小  m的作用域是在申请的时候起作用 数组名是一个常量符号，一定不要放到&#x3D; 左边 int a[100]; 越界问题： 访问数组的时候考虑越界问题 a[10] int code[5];  定义了一个名称为code的整型数组，该组含有5个整型变量，5个整型变量的下标一次是 code[0],cod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2020/10/25/%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、数组的定义定义一个空间： 1、大小 2、读取方式 定义方式：数据类型  数组名[m]  其中m代表的是大小  m的作用域是在申请的时候起作用 数组名是一个常量符号，一定不要放到&#x3D; 左边 int a[100]; 越界问题： 访问数组的时候考虑越界问题 a[10] int code[5];  定义了一个名称为code的整型数组，该组含有5个整型变量，5个整型变量的下标一次是 code[0],cod">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-25T03:08:21.193Z">
+<meta property="article:modified_time" content="2020-07-23T12:10:58.738Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/25/%E6%95%B0%E7%BB%84/" class="article-date">
+  <time datetime="2020-10-25T03:08:21.193Z" itemprop="datePublished">2020-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="一、数组的定义"><a href="#一、数组的定义" class="headerlink" title="一、数组的定义"></a>一、数组的定义</h5><p>定义一个空间：</p>
+<p>1、大小</p>
+<p>2、读取方式</p>
+<p>定义方式：数据类型  数组名[m] </p>
+<p>其中m代表的是大小  m的作用域是在申请的时候起作用</p>
+<p>数组名是一个常量符号，一定不要放到= 左边</p>
+<p>int a[100];</p>
+<p>越界问题： 访问数组的时候考虑越界问题</p>
+<p>a[10]</p>
+<p>int code[5];  定义了一个名称为code的整型数组，该组含有5个整型变量，5个整型变量的下标一次是 code[0],code[1],code[2],code[3],code[4]，数组的下标一定是从0开始的，也不可能是负数</p>
+<p>![image-20200718102702731](C:\Users\XX\Desktop\smart home\markdown笔记\typora的图片备份\image-20200718102702731.png)</p>
+<p>数组在内存中的存储形式如下图所示：</p>
+<p>![image-20200718102835623](C:\Users\XX\Desktop\smart home\markdown笔记\typora的图片备份\image-20200718102835623.png)</p>
+<h5 id="二、数组的初始化"><a href="#二、数组的初始化" class="headerlink" title="二、数组的初始化"></a>二、数组的初始化</h5><p>一、在定义的时候进行初始化： ①int code[5]={5,3,1,4,2}//定义整型数组，同时初始化数组的5个元素</p>
+<p>②int code[10]={1,2,3,4,5}//该数组公有10个元素，仅对前面5个进行初始化，后面5个元素编译器自动初始化为0</p>
+<p>③int code[5]={0,0,0,0,0}或者int code[5]={0}//所有元素初始化为0</p>
+<p> int a[10]=空间;</p>
+<p>C语言本身，CPU内部一般不支持空间和空间的拷贝</p>
+<p>==========================================</p>
+<p>数组空间的初始化 和 变量的初始化 本质不同 ，尤其在嵌入式的裸机开发中，空间的初始化往往需要库函数的辅助</p>
+<h6 id="1-char类型的初始化"><a href="#1-char类型的初始化" class="headerlink" title="1.char类型的初始化"></a>1.char类型的初始化</h6><p>1、char buf[10]={‘a’,’b’,’c’};</p>
+<p>buf当成普通内存来看，没有问题</p>
+<p>buf当成一个字符来看，最后加上一个’\0’ </p>
+<p>​    字符串的重要属性，结尾一定有一个‘\0’</p>
+<p>2、char buf[10]={“abc”};</p>
+<p>char buf[10]=”abc”;</p>
+<p>char *p=”abc”;</p>
+<p>char buf[]=”abcd”;  //5 </p>
+<p>char buf[10]=”abc”;</p>
+<p>buf=”hello world”</p>
+<p>​    第二次内存初始化，赋值？</p>
+<p>​    逐一处理 </p>
+<p>​    buf[0]=’h’   buf[1]=’e’……buf[n]=’d’   buf[n+1]=0  注意最后有一个0</p>
+<h6 id="2-strcpy-strncpy"><a href="#2-strcpy-strncpy" class="headerlink" title="2.strcpy,strncpy"></a>2.strcpy,strncpy</h6><p>一块空间，当成字符空间，提供一套字符拷贝函数</p>
+<p>字符拷贝函数的原则：</p>
+<p>​    内存空间和内存空间的逐一赋值的功能的一个封装体</p>
+<p>​    一旦空间出现了0这个特殊值，函数就即将结束。</p>
+<p>strcpy();   //严重的内存泄漏函数，工程中基本不使用</p>
+<p>char buf[10]=”abc”;</p>
+<p>buf=”hello world”;</p>
+<p>strcpy(buf,”hello world”);</p>
+<h6 id="3-非字符串空间"><a href="#3-非字符串空间" class="headerlink" title="3.非字符串空间"></a>3.非字符串空间</h6><p>字符空间</p>
+<p>​    ASCII码编码来解码的空间，–&gt;给人看的</p>
+<p>​    %s        abc   ‘a’’b’’c’</p>
+<p>​    \0作为结束标志</p>
+<p>非字符空间</p>
+<p>​    数据采集  0x00-0xff    8bit    </p>
+<p>​    开辟一个存储这些数据的盒子</p>
+<p>所以咱们是用char buf[10]；—–&gt;string</p>
+<p>还是用unsigned char buf[10];——&gt;data</p>
+<p>buf =”abc”;</p>
+<p>unsigned char *p=sensor_base;</p>
+<p>strcpy(buf,p);</p>
+<p>只管逐一拷贝，结束在哪里？只能定义个数</p>
+<p>非字符空间的拷贝三要素：</p>
+<p>1、src</p>
+<p>2、dest</p>
+<p>3、个数</p>
+<h6 id="4-memcpy-内存拷贝"><a href="#4-memcpy-内存拷贝" class="headerlink" title="4.memcpy 内存拷贝"></a>4.memcpy 内存拷贝</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> buf[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> sensor_buf[<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">memcpy</span>(buf,sensor_buf,<span class="number">10</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));<span class="comment">//当传递的参数类型不是char时，传递的参数个数，一定要用数量乘以传递的参数的类型</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> buf1[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> sensor_buf[<span class="number">100</span>];<span class="comment">//00 00 00 23 45 78 </span></span><br><span class="line"><span class="built_in">strncpy</span>(buf,sensor_buf,<span class="number">10</span>);<span class="comment">//如果是以上的数据的话，看见第一个数据为00，数据的拷贝就直接结束了</span></span><br><span class="line"><span class="built_in">memcpy</span>(buf,sensor_buf,<span class="keyword">sizeof</span>(<span class="keyword">unsigned</span> <span class="keyword">char</span>));</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/25/%E6%95%B0%E7%BB%84/" data-id="ckgoj9alk000dl4v9d7p8ftxi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/10/25/c%E5%92%8Cc++%E4%B8%ADconst%E7%9A%84%E5%BC%82%E5%90%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/25/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%BF%85%E5%A4%870x10%E9%A2%98%E7%9B%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/25/%E5%87%BD%E6%95%B0%E8%BE%93%E5%85%A5%E5%8F%82%E6%95%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E5%A4%9A%E7%BA%A7%E6%8C%87%E9%92%88/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%94%B3%E8%AF%B7/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/25/C%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
